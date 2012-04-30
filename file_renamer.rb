@@ -22,17 +22,15 @@ def rename_method str_to_rename
 	# Step 1, if the file name starts with a capital letter, we DON'T want an underscore preceding it.
 	# So we downcase the first letter:
 	if has_uppercase_letters(rename_progress[0]) == true
-		# Something is up with this code - the first letter is not being downcased...
-		#rename_progress[0].downcase
-
-		# But this one works - hooray! :D
-		puts rename_progress[0].chr.downcase + rename_progress[1..-1]
+		rename_progress = rename_progress[0].chr.downcase + rename_progress[1..-1]
 	else
-		# This section is functiong appropriately
-		# (will be removed in the end - just here, for now, to provide feedback)
-		puts "The first letter in #{rename_progress} wasn't capital - doing nothing."
 	end
 
+	# Step 2, we need to insert an underscore ( _ ) before each capital letter,
+	# Step 2a: for each character in the string, we need to check and see if it a capital letter...
+	#<code goes here>
+	# Step 2b: ...if the letter is capital, we put an underscore in front of it...
+	#<code goes here>
 
 
 
@@ -40,21 +38,21 @@ def rename_method str_to_rename
 
 
 
-	# Step 2, we need to have the code insert an underscore ( _ ) before each capital letter,
-	# <code goes here>
 
-	# Step 3, the whole thing gets downcased:
-	# rename_progress.downcase
+
+
+	# Step 3, with the underscores in place, we can safely downcase the whole thing:
+	#rename_progress = rename_progress.downcase
 
 	# Step 4, we prompt the user as to if the result is what they want:
-	#puts "Is '#{rename_progress}' the naming convention you were looking for?"
-	#if gets.chomp.downcase == "yes"
+	puts "Is '#{rename_progress}' the naming convention you were looking for?"
+	if gets.chomp.downcase == "yes"
 		# rename the file
-		#<code goes here>
-	#else
-	#	puts "No changes have been made."
-	#	exit 0
-	#end
+		puts "Alrighty - the file name is now #{rename_progress}."
+	else
+		puts "No changes have been made."
+		exit 0
+	end
 end
 
 rename_method rename_me
