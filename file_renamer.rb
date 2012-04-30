@@ -1,10 +1,13 @@
 # A program that:
 # First takes a string with ThisKindOfCasing, and turns it into a string with this_kind_of_casing:
 
-# First, we have ask the user to input the name of the file to be renamed,
+# First, we ask the user to input the name of the file to be renamed,
 # and store it in a variable:
 puts "Please input the file to be renamed:"
 rename_me = gets.chomp.to_s
+
+# Will probably want to add a check, later, to see if there is such a file
+# (maybe it doesn't exist - due to user typo)
 
 # The rename method:
 def rename_method str_to_rename
@@ -22,7 +25,8 @@ def rename_method str_to_rename
 		# Something is up with this code - the first letter is not being downcased...
 		rename_progress[0].downcase
 	else
-		# This section is functiong appropriately (will be removed in the end - just here, for now, to provide feedback)
+		# This section is functiong appropriately
+		# (will be removed in the end - just here, for now, to provide feedback)
 		puts rename_progress
 		puts "The first letter in #{rename_progress} wasn't capital - doing nothing."
 	end
