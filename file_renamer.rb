@@ -1,8 +1,6 @@
 # Version 0.1
 # The program so far - takes an input InThisKindOfFormat, and will turn it into a string in_this_kind_of_format
-
-# A program that:
-# First takes a string with ThisKindOfCasing, and turns it into a string with this_kind_of_casing:
+# It does not yet change any file names...but that is the ultimate goal.
 
 # First, we ask the user to input the name of the file to be renamed,
 # and store it in a variable:
@@ -33,7 +31,7 @@ def rename_method str_to_rename
 		# Step 2a, for each character in the string (after the first), we need to check and see if it a capital letter... 
 		elsif has_uppercase_letters(str_to_rename[x]) == true
 			# We insert an underscore ( _ ) before each capital letter...
-			# ...with .gsub, then put the characterm including the current indexed character...
+			# ...with .gsub, then include the current indexed character...
 			rename_progress += str_to_rename[x].gsub(/([A-Z])/, ('_' + str_to_rename[x]))
 			# ...and add that to our progress.
 		# Step 2b, we still add in each lower-case character to the rename_progress...
