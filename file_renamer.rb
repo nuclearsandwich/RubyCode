@@ -1,3 +1,6 @@
+# Version 0.1
+# The program so far - takes an input InThisKindOfFormat, and will turn it into a string in_this_kind_of_format
+
 # A program that:
 # First takes a string with ThisKindOfCasing, and turns it into a string with this_kind_of_casing:
 
@@ -11,38 +14,38 @@ rename_me = gets.chomp.to_s
 
 # The rename method:
 def rename_method str_to_rename
+	# variable x, indexing for the while loop
+	x = 0
 	# rename_progress is the variable storing the progress of the string as the program goes on:
-	rename_progress = str_to_rename
+	rename_progress = ""
 
 	# Define the method that finds if there is a capital letter in the input:
 	def has_uppercase_letters this_capital
 		(this_capital =~ /[A-Z]/) != nil
 	end
 
-	# Step 1, if the file name starts with a capital letter, we DON'T want an underscore preceding it.
-	# So we downcase the first letter:
-	if has_uppercase_letters(rename_progress[0]) == true
-		rename_progress = rename_progress[0].chr.downcase + rename_progress[1..-1]
-	else
+	while x < str_to_rename.length
+		# Step 1, if the file name starts with a capital letter, we DON'T want an underscore preceding it.
+		if x == 0
+			# So we skip over it...
+			rename_progress += str_to_rename[x]
+			# ...but add it to our progress.
+		# Step 2a, for each character in the string (after the first), we need to check and see if it a capital letter... 
+		elsif has_uppercase_letters(str_to_rename[x]) == true
+			# We insert an underscore ( _ ) before each capital letter...
+			# ...with .gsub, then put the characterm including the current indexed character...
+			rename_progress += str_to_rename[x].gsub(/([A-Z])/, ('_' + str_to_rename[x]))
+			# ...and add that to our progress.
+		# Step 2b, we still add in each lower-case character to the rename_progress...
+		else
+			rename_progress += str_to_rename[x]
+		end
+		# Incrementing the index for the while loop
+		x += 1
 	end
 
-	# Step 2, we need to insert an underscore ( _ ) before each capital letter,
-	# Step 2a: for each character in the string, we need to check and see if it a capital letter...
-	#<code goes here>
-	# Step 2b: ...if the letter is capital, we put an underscore in front of it...
-	#<code goes here>
-
-
-
-
-
-
-
-
-
-
 	# Step 3, with the underscores in place, we can safely downcase the whole thing:
-	#rename_progress = rename_progress.downcase
+	rename_progress = rename_progress.downcase
 
 	# Step 4, we prompt the user as to if the result is what they want:
 	puts "Is '#{rename_progress}' the naming convention you were looking for?"
