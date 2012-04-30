@@ -20,14 +20,16 @@ def rename_method str_to_rename
 	end
 
 	# Step 1, if the file name starts with a capital letter, we DON'T want an underscore preceding it.
-	# Also, we downcase the first letter:
+	# So we downcase the first letter:
 	if has_uppercase_letters(rename_progress[0]) == true
 		# Something is up with this code - the first letter is not being downcased...
-		rename_progress[0].downcase
+		#rename_progress[0].downcase
+
+		# But this one works - hooray! :D
+		puts rename_progress[0].chr.downcase + rename_progress[1..-1]
 	else
 		# This section is functiong appropriately
 		# (will be removed in the end - just here, for now, to provide feedback)
-		puts rename_progress
 		puts "The first letter in #{rename_progress} wasn't capital - doing nothing."
 	end
 
