@@ -1,4 +1,9 @@
-# Version 0.2
+# Version 0.3
+
+# Notes for next version:
+# Look into fixing issue with lines 29-33
+# Maybe make a while loop out of alphabetize 1/2 choice?  If gets != 1 or 2, ask again (until
+	# a proper input is given)?
 
 # This program takes user inputs, puts them into an array,
 # alphabetizes them, then outputs the alphabetized array.
@@ -28,11 +33,7 @@ while run_me == 1
 			elsif gets.chomp.to_s == "2"
 				puts alphabetize_me.join(', ')
 				run_me = 0
-			else
-				# Also a problem here.  Not returning a 1 or 2 will cause the program to
-				# have a giant brainfart and stop running.
 			end
-			run_me = 0
 		else
 			# Anything but "yes" will have the while loop continue to re-run
 		end
