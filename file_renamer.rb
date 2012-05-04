@@ -1,9 +1,8 @@
-# Version 0.3
-# The program so far - takes an input InThisKindOfFormat, and will turn it into a string in_this_kind_of_format
-# It does not yet change any file names...but that is the ultimate goal.
+# Version 1.0
 
-# First, we ask the user to input the name of the file to be renamed,
-# and store it in a variable:
+# The program takes an input InThisKindOfFormat, and will turn it into a string in_this_kind_of_format
+
+# The user is prompted for an input - the input is saved in a variable:
 puts "Please input the file to be renamed:"
 rename_me = gets.chomp.to_s
 
@@ -32,6 +31,7 @@ def rename_method str_to_rename
 
 	puts "Is '#{file_name_prog}' the naming convention you were looking for?"
 	if gets.chomp.downcase == "yes"
+		File.rename(str_to_rename, file_name_prog) # Renaming the file
 		puts "Alrighty - the file name is now #{file_name_prog}."
 	else
 		puts "No changes have been made."
@@ -39,16 +39,4 @@ def rename_method str_to_rename
 	end
 end
 
-# This works
-#  |    |
-#  |    |
-#  V    V
-File.rename(rename_me, (rename_method rename_me).to_s)
-#             ^    ^        ^            ^        ^
-#             |    |        |            |        |
-#             |    |        |            |        |
-#             |    |        |            |        |
-# This much works too.      |            |        |
-#                           |            |        |
-#                           |            |        |
-#                Something here, though, is not working...
+rename_method rename_me
