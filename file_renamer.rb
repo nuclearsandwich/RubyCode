@@ -25,7 +25,7 @@ def rename_method str_to_rename
 			file_name_prog += str_to_rename[x]
 		end
 		x += 1
-	end		
+	end
 
 	file_name_prog.downcase!
 
