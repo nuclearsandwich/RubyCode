@@ -1,14 +1,17 @@
-# Starting the script, the user is asked how many bottles of beer there are on the wall:
-puts "How many bottles of beer are on the wall?"
+bottlesOfBeer = 0
 
-# Variable storing the user's input:
-bottlesOfBeer = gets.chomp.to_i
+until bottlesOfBeer > 0 && bottlesOfBeer < 101
+	puts "How many bottles of beer are on the wall? I can go from 1 to 100."
+	bottlesOfBeer = gets.chomp.to_i
+	if bottlesOfBeer <= 0
+		puts "I can't sing if there are no bottles of beer on the wall, now can I?"
+	else
+		puts "Woah, that's way too many.  Keep it at or below 100."
+	end
+end
 
-# While there is at least 1 bottle of beer on the wall, our program goes through the song:
 while bottlesOfBeer > 0
 	puts bottlesOfBeer.to_s + " bottles of beer on the wall, " + bottlesOfBeer.to_s + " bottles of beer!"
 	bottlesOfBeer -= 1
 	puts "Take one down, pass it around, " + bottlesOfBeer.to_s + " bottles of beer on the wall!"
 end
-
-# Still needs a check for a valid input...
