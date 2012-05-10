@@ -6,15 +6,16 @@
 puts "Please input the file to be renamed:"
 rename_me = gets.chomp
 
+def has_uppercase_letters this_capital
+  (this_capital =~ /[A-Z]/) != nil
+end
+
 def rename_method str_to_rename
 	# variable x, indexing for the file name:
 	x = 0
 	# variable storing the file name:
 	file_name_prog = ""
 
-	def has_uppercase_letters this_capital
-		(this_capital =~ /[A-Z]/) != nil
-	end
 
 	while x < str_to_rename.length
 		if x == 0
