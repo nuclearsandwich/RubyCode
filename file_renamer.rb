@@ -6,34 +6,39 @@
 puts "Please input the file to be renamed:"
 rename_me = gets.chomp
 
-def has_uppercase_letters this_capital
-  (this_capital =~ /[A-Z]/) != nil
-end
+# This regular expression matches any single capital letter. The regexp
+# has comments in it contained by (?# ...) these are not part of the
+# regular expression and are merely explanatory. A succinct version of it
+# would be
+# CAPTURE_CAPITAL_REGEXP = /([A-Z])/
+CAPTURE_CAPITAL_REGEXP = /
+(            (?# Start a capture group with an open parentheses)
+[A-Z]        (?# Match any single character ranging from A to Z)
+)            (?# Close the capture group so that the character will be captured)
+/x
+# The trailing `x` flag on the regexp means don't count spaces as part of the
+# pattern. It helps us format our comments cleanly.
 
 def rename_method str_to_rename
-	# variable x, indexing for the file name:
-	x = 0
-	# variable storing the file name:
-	file_name_prog = ""
+  # The new filename is created by replacing each capital letter with an
+  # underscore followed by the downcased letter. In order to use a regular
+  # expression capture with the gsub method, we need to pass it a block.
+  new_filename = str_to_rename.gsub CAPTURE_CAPITAL_REGEXP do |matched_capital|
+    matched_capital.prepend("_").downcase
+  end
+
+  # The new filename above may have an underscore in the first position, such
+  # as when the filename was "GuessingGame" we don't want that so we can
+  # actually check if the first character is an underscore and strip it away.
+  # We use #gsub! rather than #gsub since we were the ones who made this string
+  # so it doesn't matter if we also do destructive work on it.
+  new_filename.gsub! /^_/, ""
 
 
-	while x < str_to_rename.length
-		if x == 0
-			file_name_prog += str_to_rename[x]
-		elsif has_uppercase_letters(str_to_rename[x]) == true
-			file_name_prog += str_to_rename[x].gsub(/([A-Z])/, ('_' + str_to_rename[x]))
-		else
-			file_name_prog += str_to_rename[x]
-		end
-		x += 1
-	end
-
-	file_name_prog.downcase!
-
-	puts "Is '#{file_name_prog}' the naming convention you were looking for?"
+	puts "Is '#{new_filename}' the naming convention you were looking for?"
 	if gets.chomp.downcase == "yes"
-		File.rename(str_to_rename, file_name_prog) # Renaming the file
-		puts "Alrighty - the file name is now #{file_name_prog}."
+		File.rename(str_to_rename, new_filename) # Renaming the file
+		puts "Alrighty - the file name is now #{new_filename}."
 	else
 		puts "No changes have been made."
 		exit 0
