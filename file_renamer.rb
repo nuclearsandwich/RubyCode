@@ -4,7 +4,7 @@
 
 # The user is prompted for an input - the input is saved in a variable:
 puts "Please input the file to be renamed:"
-rename_me = gets.chomp.to_s
+rename_me = gets.chomp
 
 def rename_method str_to_rename
 	# variable x, indexing for the file name:
